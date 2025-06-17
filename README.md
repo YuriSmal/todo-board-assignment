@@ -15,4 +15,5 @@ npm i
 ```
 npm run dev
 ```
-4. Open your browser and navigate to `http://localhost:5173/` to see the application in action (if port 5173 is already live, check the terminal to get the correct localhost url).
+4. Open your browser and navigate to ` http://localhost:5173/todo-board-assignment
+` to see the application in action (if port 5173 is already live, check the terminal to get the correct localhost url).
