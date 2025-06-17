@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type KeyboardEvent } from "react";
 import { Button } from "@components/Common";
+import { EVENT_KEY } from "../../constants";
 
 type NewColumnProps = {
     addColumn: (title: string) => void;
@@ -22,7 +23,7 @@ export const NewColumn = (props: NewColumnProps) => {
     }
 
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
+        if (e.key === EVENT_KEY.Enter) {
             if (!title.trim()) return;
             addColumn(title);
             setTitle('');

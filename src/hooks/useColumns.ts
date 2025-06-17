@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import type {IColumn} from "../components/Column";
-import {generateId} from "../utils/utils.ts";
+import type {IColumn} from "@components/Column";
+import {generateId} from "../utils";
 
 const getColumns = () => {
     const data = localStorage.getItem('todoData');

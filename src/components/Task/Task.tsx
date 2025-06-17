@@ -6,6 +6,8 @@ import classNames from 'classnames';
 
 import { Button } from "@components/Common";
 import { useTaskContext } from '../../context';
+import { highlightMatch } from "../../utils";
+import { EVENT_KEY } from "../../constants";
 
 export interface ITask {
     id: string;
@@ -26,6 +28,7 @@ export const Task = ({ columnId, task }: TaskItemProps) => {
         toggleTaskComplete,
         updateTaskTitle,
         selectTask,
+        searchTerm
     } = useTaskContext();
 
     const [isDragging, setIsDragging] = useState(false);
@@ -34,7 +37,6 @@ export const Task = ({ columnId, task }: TaskItemProps) => {
 
     const taskRef = useRef<HTMLDivElement>(null);
 
-    // Make task draggable and drop target for reordering
     useEffect(() => {
         const el = taskRef.current;
         if (!el) return ;
@@ -72,7 +74,7 @@ export const Task = ({ columnId, task }: TaskItemProps) => {
         }
     };
     const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
+        if (e.key === EVENT_KEY.Enter) {
             (e.target as HTMLInputElement).blur();
         }
     };
@@ -105,7 +107,9 @@ export const Task = ({ columnId, task }: TaskItemProps) => {
                         autoFocus
                     />
                 ) : (
-                    <p onDoubleClick={handleDoubleClick}>{title}</p>
+                    <p onDoubleClick={handleDoubleClick}  dangerouslySetInnerHTML={{
+                        __html: highlightMatch(title, searchTerm),
+                    }}/>
                 )}
             </div>
             {!editing &&
@@ -134,7 +138,7 @@ export const AddTask = (props: AddTaskProps) => {
     }
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
+        if (e.key === EVENT_KEY.Enter) {
             onAddTask(id, newTaskText);
             setNewTaskText('');
         }

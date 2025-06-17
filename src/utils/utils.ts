@@ -13,3 +13,12 @@ export const filterValidator = (task: ITask, filter: COMPLETION_FILTER) => {
 };
 
 export const shouldFilter = (searchTerm: string, completionFilter: COMPLETION_FILTER) => searchTerm.trim() !== '' || (completionFilter && completionFilter !== 'all');
+
+export const highlightMatch = (text: string, query: string): string => {
+    if (!query) return text;
+
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
+
+    return text.replace(regex, '<mark>$1</mark>');
+}
