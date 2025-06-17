@@ -143,10 +143,11 @@ export const useColumns = () => {
     };
 
     const moveSelectedTasks = (sourceColId: string, targetColId: string) => {
-        if (sourceColId === targetColId) return;
+        const targetColumnId = columns.find(col => col.title.toLowerCase() === targetColId.toLowerCase())?.id;
+        if (!targetColumnId || (sourceColId === targetColId)) return;
         setColumns(prev => {
             const sourceCol = prev.find(col => col.id === sourceColId);
-            const targetCol = prev.find(col => col.id === targetColId);
+            const targetCol = prev.find(col => col.id === targetColumnId);
             if (!sourceCol || !targetCol) return prev;
             const tasksToMove = sourceCol.tasks.filter(task => task.selected);
             if (tasksToMove.length === 0) return prev;
@@ -159,7 +160,7 @@ export const useColumns = () => {
             ];
             return prev.map(col => {
                 if (col.id === sourceColId) return { ...col, tasks: newSourceTasks };
-                if (col.id === targetColId) return { ...col, tasks: newTargetTasks };
+                if (col.id === targetColumnId) return { ...col, tasks: newTargetTasks };
                 return col;
             });
         });

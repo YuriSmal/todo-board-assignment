@@ -105,7 +105,7 @@ export const Task = ({ columnId, task }: TaskItemProps) => {
                         autoFocus
                     />
                 ) : (
-                    <span onDoubleClick={handleDoubleClick}>{title}</span>
+                    <p onDoubleClick={handleDoubleClick}>{title}</p>
                 )}
             </div>
             {!editing &&

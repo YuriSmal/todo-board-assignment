@@ -16,11 +16,13 @@
   &-content {
     display: flex;
     gap: 5px;
+    padding: 5px;
 
-    span {
-      white-space: nowrap;
+    p {
+      padding-left: 5px;
+      white-space: pre-wrap;
+      word-break: break-word;
       overflow: hidden;
-      max-width: 130px;
       text-overflow: ellipsis;
     }
 
@@ -35,7 +37,7 @@
 
   &.completed {
     background: #e7e7e761;
-    span {
+    p {
       text-decoration: line-through;
       color: #5e6c84;
     }

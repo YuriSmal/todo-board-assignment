@@ -49,7 +49,6 @@ export const TaskProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [searchTerm, setSearchTerm] = useState('');
     const [completionFilter, setCompletionFilter] = useState<COMPLETION_FILTER>('all');
 
-    // Drag-and-drop operations
     const moveTask = (
         sourceColId: string,
         targetColId: string,

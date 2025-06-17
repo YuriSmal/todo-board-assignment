@@ -10,16 +10,20 @@ export const NewColumn = (props: NewColumnProps) => {
     const [title, setTitle] = useState('');
 
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value);
+        if (e.target.value.length <= 20) {
+            setTitle(e.target.value);
+        }
     }
 
     const handleAddColumn = () => {
+        if (!title.trim()) return;
         addColumn(title);
         setTitle('')
     }
 
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
+            if (!title.trim()) return;
             addColumn(title);
             setTitle('');
         }
